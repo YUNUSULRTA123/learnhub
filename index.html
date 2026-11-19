@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LearnHub — платформа для изучения школьных предметов.">
+  <title>LearnHub — учись с интересом</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" data-page="home"><span class="brand-mark">L</span><span>Learn<span class="brand-light">Hub</span></span></a>
+      <div class="sidebar-label">МЕНЮ</div>
+      <nav class="nav-menu">
+        <button class="nav-link active" data-page="home"><span>⌂</span> Главная</button>
+        <button class="nav-link" data-page="courses"><span>▤</span> Предметы</button>
+        <button class="nav-link" data-page="quiz"><span>✎</span> Тесты</button>
+        <button class="nav-link" data-page="leaderboard"><span>♜</span> Рейтинг</button>
+        <button class="nav-link" data-page="profile"><span>◉</span> Мой профиль</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card"><div class="help-icon">✦</div><b>Продолжай учиться!</b><p>Каждый урок приближает тебя к цели.</p><button class="text-button" data-page="courses">Выбрать урок →</button></div>
+        <div class="user-mini" id="sidebar-user"><div class="avatar">У</div><div><b>Гость</b><small>Войдите в аккаунт</small></div><button class="dots" id="auth-open" aria-label="Войти">⋯</button></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" aria-label="Открыть меню">☰</button>
+        <div class="breadcrumb">Обучение <span>/</span> <b id="page-title">Главная</b></div>
+        <div class="top-actions"><div class="points-pill">✦ <span id="top-points">0</span> баллов</div><button class="login-button" id="top-auth">Войти</button></div>
+      </header>
+
+      <section class="page active" id="page-home">
+        <div class="welcome-row">
+          <div><div class="eyebrow">ТВОЯ УЧЕБНАЯ ПЛАТФОРМА</div><h1>Учись с интересом.<br><span>Достигай большего.</span></h1><p class="muted">Изучай школьные предметы, проходи тесты и следи за своим прогрессом.</p><div class="hero-actions"><button class="primary-button" data-page="courses">Начать обучение <span>→</span></button><button class="secondary-button" data-page="quiz">Пройти тест</button></div></div>
+          <div class="hero-art"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="book-emoji">📚</div><div class="floating-card float-top">✦ <b>+20 баллов</b><small>за урок</small></div><div class="floating-card float-bottom">🎯 <b>Твоя цель</b><small>Учиться каждый день</small></div></div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-icon blue">▤</div><div><strong id="stat-lessons">0</strong><span>Уроков завершено</span></div></div>
+          <div class="stat-card"><div class="stat-icon purple">✎</div><div><strong id="stat-quizzes">0</strong><span>Тестов пройдено</span></div></div>
+          <div class="stat-card"><div class="stat-icon orange">✦</div><div><strong id="stat-points">0</strong><span>Всего баллов</span></div></div>
+          <div class="stat-card"><div class="stat-icon green">♜</div><div><strong id="stat-rank">—</strong><span>Место в рейтинге</span></div></div>
+        </div>
+        <div class="section-heading"><div><div class="eyebrow">НАЧНИ ПРЯМО СЕЙЧАС</div><h2>Популярные предметы</h2></div><button class="text-button" data-page="courses">Все предметы →</button></div>
+        <div class="course-grid" id="home-courses"></div>
+        <div class="section-heading compact-heading"><div><div class="eyebrow">ТВОЙ ПУТЬ</div><h2>Последние достижения</h2></div></div>
+        <div class="activity-card" id="recent-activity"><div class="empty-state">Пока нет активности. Пройди первый урок!</div></div>
+      </section>
+
+      <section class="page" id="page-courses">
+        <div class="page-intro"><div class="eyebrow">БИБЛИОТЕКА ЗНАНИЙ</div><h1>Школьные предметы</h1><p class="muted">Выбирай предмет и открывай новые темы.</p></div>
+        <div class="filter-row"><div class="search-box">⌕ <input id="course-search" placeholder="Найти предмет или тему..." /></div><span class="muted small">Выбери карточку, чтобы увидеть уроки</span></div>
+        <div class="course-grid" id="all-courses"></div>
+        <div id="lesson-panel" class="lesson-panel hidden"></div>
+      </section>
+
+      <section class="page" id="page-quiz">
+        <div class="page-intro"><div class="eyebrow">ПРОВЕРЬ СЕБЯ</div><h1>Центр тестирования</h1><p class="muted">Выбери предмет, ответь на вопросы и заработай баллы.</p></div>
+        <div class="quiz-layout"><div class="quiz-select-card"><h3>Доступные тесты</h3><p class="muted small">Каждый правильный ответ приносит 10 баллов.</p><div id="quiz-list"></div></div><div class="quiz-workspace" id="quiz-workspace"><div class="quiz-placeholder"><div class="placeholder-icon">✎</div><h3>Готов проверить знания?</h3><p class="muted">Выбери тест слева, чтобы начать.</p></div></div></div>
+      </section>
+
+      <section class="page" id="page-leaderboard">
+        <div class="page-intro"><div class="eyebrow">УЧИСЬ И ДОСТИГАЙ</div><h1>Таблица лидеров</h1><p class="muted">Соревнуйся с другими учениками и поднимайся выше.</p></div>
+        <div class="leaderboard-card"><div class="leaderboard-head"><h3>🏆 Рейтинг LearnHub</h3><span class="live-label">● Обновляется локально</span></div><div id="leaderboard-list"></div><p class="tiny-note">Демонстрационные участники показаны для примера. Реальные аккаунты сохраняются только в этом браузере.</p></div>
+      </section>
+
+      <section class="page" id="page-profile">
+        <div class="page-intro"><div class="eyebrow">ЛИЧНЫЙ КАБИНЕТ</div><h1>Мой профиль</h1><p class="muted">Твои результаты и учебный прогресс.</p></div>
+        <div class="profile-layout"><div class="profile-card"><div class="profile-avatar" id="profile-avatar">У</div><h2 id="profile-name">Гость</h2><p class="muted" id="profile-email">Войди или зарегистрируйся, чтобы создать профиль</p><button class="primary-button" id="profile-auth">Войти / Регистрация</button></div><div class="profile-details"><div class="profile-metric"><span>Баллы</span><b id="profile-points">0</b></div><div class="profile-metric"><span>Завершено уроков</span><b id="profile-lessons">0</b></div><div class="profile-metric"><span>Пройдено тестов</span><b id="profile-quizzes">0</b></div><div class="profile-metric"><span>Текущий уровень</span><b id="profile-level">Новичок</b></div><div class="profile-progress"><div class="row-between"><b>Прогресс до следующего уровня</b><span id="level-progress-label">0 / 100</span></div><div class="progress-track"><div id="level-progress" class="progress-fill"></div></div></div><button class="secondary-button danger-button hidden" id="logout-button">Выйти из аккаунта</button></div></div>
+      </section>
+
+      <footer><span>© 2026 LearnHub</span><span>Учись сегодня — создавай возможности завтра.</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="auth-modal">
+    <div class="auth-modal">
+      <button class="modal-close" id="modal-close" aria-label="Закрыть">×</button>
+      <div class="modal-brand"><span class="brand-mark">L</span> LearnHub</div>
+      <h2 id="auth-title">С возвращением!</h2><p class="muted" id="auth-subtitle">Войди, чтобы продолжить обучение.</p>
+      <div class="auth-tabs"><button class="auth-tab active" data-auth-tab="login">Вход</button><button class="auth-tab" data-auth-tab="register">Регистрация</button></div>
+      <form id="auth-form">
+        <label id="name-field" class="hidden">Имя<input id="auth-name" type="text" placeholder="Как тебя зовут?"></label>
+        <label>Email<input id="auth-email" type="email" placeholder="you@example.com" required></label>
+        <label>Пароль<input id="auth-password" type="password" placeholder="Минимум 6 символов" minlength="6" required></label>
+        <p class="form-error" id="auth-error"></p>
+        <button class="primary-button full-button" type="submit" id="auth-submit">Войти</button>
+      </form>
+      <p class="tiny-note">Демо-версия: данные хранятся в localStorage этого браузера. Не используй настоящий пароль.</p>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
